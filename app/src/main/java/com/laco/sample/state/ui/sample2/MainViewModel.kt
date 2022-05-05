@@ -37,19 +37,12 @@ class MainViewModel constructor(
         }
     }
 
-
-    // Event
     fun toggleBookmark(item: NewsItemUiState) {
         val state = state.value
         if (state is NewsUiState.Success) {
-            val newsItems = state.newsItems.map {
-                if (item.id == it.id) {
-                    it.copy(bookmarked = !it.bookmarked)
-                } else {
-                    it
-                }
-            }
-            _state.value = state.copy(newsItems = newsItems)
+            _state.value = state.toggleBookmark(item.id)
+        } else {
+            // 북마크 지원 X
         }
     }
 }

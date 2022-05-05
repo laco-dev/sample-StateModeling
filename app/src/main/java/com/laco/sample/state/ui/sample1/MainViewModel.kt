@@ -49,7 +49,6 @@ class MainViewModel constructor(
         }
     }
 
-    // Event
     fun toggleBookmark(item: NewsItemUiState) {
         _newsItems.update { items ->
             items.map {

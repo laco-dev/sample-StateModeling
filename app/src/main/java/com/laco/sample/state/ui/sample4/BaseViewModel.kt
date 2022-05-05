@@ -12,10 +12,20 @@ abstract class BaseViewModel<T>(
     private val _state = MutableStateFlow(initialState)
     val state = _state.asStateFlow()
 
-    fun updateState(transform: (T) -> T) {
+    protected fun updateState(transform: (T) -> T) {
         val state = state.value
         val value = state.value ?: return
-        _state.update { UiState.success(transform(value)) }
+        _state.update {
+            UiState.success(transform(value))
+        }
+    }
+
+    protected fun updateState(
+        isLoading: Boolean = state.value.isLoading,
+        cause: Throwable? = state.value.cause,
+        value: T? = state.value.value
+    ) {
+        _state.value = UiState(isLoading = isLoading, cause = cause, value = value)
     }
 }
 

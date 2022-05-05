@@ -20,5 +20,15 @@ sealed class NewsUiState {
 
     data class Success(
         override val newsItems: List<NewsItemUiState>
-    ) : NewsUiState()
+    ) : NewsUiState() {
+
+        fun toggleBookmark(targetItemId: String): NewsUiState =
+            copy(newsItems = newsItems.map { item ->
+                if (item.id == targetItemId) {
+                    item.copy(bookmarked = item.bookmarked.not())
+                } else {
+                    item
+                }
+            })
+    }
 }

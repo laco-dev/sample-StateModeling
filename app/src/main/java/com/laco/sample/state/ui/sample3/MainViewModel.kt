@@ -53,7 +53,6 @@ class MainViewModel constructor(
         }
     }
 
-    // Event
     fun toggleBookmark(item: NewsItemUiState) {
         _state.update { state ->
             val newsItems = state.newsItems.map {
@@ -65,5 +64,8 @@ class MainViewModel constructor(
             }
             state.copy(newsItems = newsItems)
         }
+
+        // 이렇게도 작성 가능
+        _state.update { state -> state.toggleBookmark(item.id) }
     }
 }

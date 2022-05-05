@@ -10,6 +10,16 @@ data class NewsUiState(
 
     val isEmpty: Boolean = !isLoading && newsItems.isEmpty()
 
+    fun toggleBookmark(targetItemId: String): NewsUiState = copy(
+        newsItems = newsItems.map { item ->
+            if (item.id == targetItemId) {
+                item.copy(bookmarked = !item.bookmarked)
+            } else {
+                item
+            }
+        }
+    )
+
     companion object {
         val Uninitialized = NewsUiState(
             isLoading = false,

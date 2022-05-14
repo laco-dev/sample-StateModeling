@@ -1,5 +1,3 @@
-## Sample Project
-
 ### UI State Modeling 어떤게 좋을까?
 
 1. UI State 여러개로 처리하기
